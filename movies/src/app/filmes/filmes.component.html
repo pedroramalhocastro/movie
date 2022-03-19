@@ -1,4 +1,46 @@
-<div class="toolbar" role="banner">
-  <span>Movies</span>
+<div>
+<input placeholder="Buscar filme..." id="busca" (input)="Search()" [(ngModel)]="buscarfilme"/>
+</div>
 
+<div>
+
+<ng-container *ngFor="let movie of page ">
+
+<mat-card class="card mat-card" fxFlex="0 1 calc(33.3% - 11px)"
+fxFlex.lt-md="0 1 calc(50% - 11px)"
+fxFlex.lt-sm="100%">
+
+  <mat-card-header >
+
+
+
+<mat-card-title-group>
+  <img mat-card-image  src={{IMG_Url+movie.poster_path}}  alt={{movie.title}} >
+  <mat-card-title class="mat-card-title">
+    <div>
+      <p>{{movie.title}}</p>
+    </div>
+  </mat-card-title>
+</mat-card-title-group>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>{{movie.overview}}</p>
+  </mat-card-content>
+
+</mat-card>
+
+</ng-container>
+
+<div class="paginator">
+  <mat-paginator  [length]="totalPages"
+   [pageSize]="5"
+   (page)="OnpageChange($event)"
+ showFirstLastButtons  style="
+  margin-right: 310px;
+  margin-top: 10px;
+  background-color: #fff0;">>
+</mat-paginator>
+
+</div>
 </div>
